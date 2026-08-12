@@ -1,25 +1,20 @@
 const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 
-// HTML-Datei ausliefern
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-});
+app.use(express.static('public'));
 
-// Wenn ein Nutzer sich verbindet
 io.on('connection', (socket) => {
-  console.log('Jemand hat sich verbunden');
+  console.log('Ein Nutzer ist verbunden:', socket.id);
+
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg); // an alle senden
+  });
 
   socket.on('disconnect', () => {
-    console.log('Jemand hat die Verbindung getrennt');
+    console.log('Nutzer getrennt:', socket.id);
   });
 });
 
-server.listen(3000, () => {
-  console.log('Server läuft auf http://localhost:3000');
-});
+http.listen(3000, () => console.log('Server läuft auf Port 3000'));
