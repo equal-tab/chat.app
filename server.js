@@ -8,13 +8,15 @@ app.use(express.static('public'));
 io.on('connection', (socket) => {
   console.log('Ein Nutzer ist verbunden:', socket.id);
 
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg); // an alle senden
+  socket.on('chat-message', msg => {
+    io.emit('chat-message', msg); 
+    console.log(msg);
   });
 
   socket.on('disconnect', () => {
     console.log('Nutzer getrennt:', socket.id);
   });
+  
 });
-
+console.log("Link to the server: http://localhost:3000/")
 http.listen(3000, () => console.log('Server läuft auf Port 3000'));
