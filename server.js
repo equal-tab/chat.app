@@ -5,7 +5,7 @@ const io = require('socket.io')(http);
 
 app.use(express.static('public'));
 
-io.on('connection', (socket) => {
+io.on('connect', (socket) => {
   console.log('Ein Nutzer ist verbunden:', socket.id);
 
   socket.on('chat-message', msg => {

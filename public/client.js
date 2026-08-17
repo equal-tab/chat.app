@@ -7,6 +7,14 @@ console.log("Mit Server Verbunden!");
 const form = document.getElementById("inputForm");
 const textfield = document.getElementById("textfield");
 
+function dispalyMessage(msg){
+    const msgGrid = document.querySelector(".chatHistory");
+    const newMsg = document.createElement("li");
+    newMsg.textContent = msg;
+    msgGrid.append(newMsg);
+    newMsg.classList.add("chatMessage");
+}
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     const msg = textfield.value.trim();
@@ -18,3 +26,7 @@ form.addEventListener("submit", (e) => {
     textfield.value = "";
     console.log(msg);
 });
+socket.on("chat-message", msg =>{
+    dispalyMessage(msg)
+    console.log(`${socket.msg}`)
+})
