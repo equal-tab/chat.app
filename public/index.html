@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <title>Chat</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <aside>
     <h1>Chats</h1>
   </aside>
+  <div class="modal">
+    <h1>Please choose a name</h1>
+    <div class="nameInput">
+      <input id="NameInput" type="text">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+        <path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
+      </svg>
+      <button onclick="closeNameBtn()" id="closeNameBtn">Schließen</button>
+    </div>
 
+  </div>
   <div class="content">
     <h2>Name</h2>
     <div class="messages">
       <ul class="chatHistory">
-        <li class="chatMessage">
-          Raienr Winkler ist ein geiler Hengst
-        </li>
+
       </ul>
     </div>
 
@@ -25,9 +35,11 @@
     <div class="textfield">
       <form action="#" id="inputForm">
         <input id="textfield" type="text">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+          <path d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
+        </svg>
       </form>
-      
+
     </div>
   </div>
 
@@ -36,4 +48,5 @@
   <script src="/socket.io/socket.io.js"></script>
   <script type="module" src="client.js">  </script>
 </body>
+
 </html>

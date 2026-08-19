@@ -30,3 +30,20 @@ socket.on("chat-message", msg =>{
     dispalyMessage(msg)
     console.log(`${socket.msg}`)
 })
+document.addEventListener("DOMContentLoaded", ()=>{
+    const modal = document.querySelector(".modal");
+    const NameInput = document.getElementById("NameInput").value;
+    modal.style.display = "flex"
+    
+    socket.id = NameInput;
+    console.log(socket.id);
+    
+})
+function closeNameBtn(){
+    const modal = document.querySelector(".modal");
+    modal.style.display = "none";
+    alert("Hallo Welt");
+}
+doc
+
+document.getElementById("closeNameBtn").addEventListener("click", closeNameBtn)
