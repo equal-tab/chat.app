@@ -1,4 +1,16 @@
-const socket = io("http://localhost:3000");
+const socket = io("http://localhost:3000", { autoConnect: false });
+export default socket;
+
+socket.onAny((event, ...args) => {
+  console.log(event, args);
+});
+
+socket.on("connect_error", (err) => {
+  if (err.message === "invalid username") {
+    this.usernameAlreadySelected = false;
+  }
+});
+
 socket.on("connect", ()=>{
     console.log(socket.id);
 })
@@ -33,17 +45,19 @@ socket.on("chat-message", msg =>{
 document.addEventListener("DOMContentLoaded", ()=>{
     const modal = document.querySelector(".modal");
     const NameInput = document.getElementById("NameInput").value;
-    modal.style.display = "flex"
+    modal.style.display = "flex";
     
-    socket.id = NameInput;
-    console.log(socket.id);
+    
     
 })
 function closeNameBtn(){
     const modal = document.querySelector(".modal");
+    const NameInput = document.getElementById("NameInput").value;
+    this.usernameAlreadySelected = true;
+    socket.auth = { NameInput };
+    socket.connect();
+    console.log(socket.id);
     modal.style.display = "none";
-    alert("Hallo Welt");
 }
-doc
 
 document.getElementById("closeNameBtn").addEventListener("click", closeNameBtn)

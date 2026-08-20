@@ -94,8 +94,9 @@ aside {
     height: 200px;
     width: 500px;
     background-color: var(--accent-color);
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
