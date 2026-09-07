@@ -1,20 +1,15 @@
 const socket = io("http://localhost:3000", { autoConnect: false });
+const nameInput = document.getElementById("nameInput");
 export default socket;
 
 socket.onAny((event, ...args) => {
   console.log(event, args);
 });
 
-socket.on("connect_error", (err) => {
-  if (err.message === "invalid username") {
-    this.usernameAlreadySelected = false;
-  }
+socket.on("username-assigned", (username) => {
+    nameInput.value = username;
 });
-
-socket.on("connect", ()=>{
-    console.log(socket.id);
-})
-console.log("Mit Server Verbunden!");
+socket.connect();
 
 const form = document.getElementById("inputForm");
 const textfield = document.getElementById("textfield");
@@ -44,19 +39,10 @@ socket.on("chat-message", msg =>{
 })
 document.addEventListener("DOMContentLoaded", ()=>{
     const modal = document.querySelector(".modal");
-    const NameInput = document.getElementById("NameInput").value;
     modal.style.display = "flex";
-    
-    
-    
 })
 function closeNameBtn(){
     const modal = document.querySelector(".modal");
-    const NameInput = document.getElementById("NameInput").value;
-    this.usernameAlreadySelected = true;
-    socket.auth = { NameInput };
-    socket.connect();
-    console.log(socket.id);
     modal.style.display = "none";
 }
 
